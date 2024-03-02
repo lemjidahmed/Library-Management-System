@@ -1,0 +1,5 @@
+.username-container {
+  display: flex;
+  align-items: center;
+  margin-right: 10px; /* Adjust as needed */
+}

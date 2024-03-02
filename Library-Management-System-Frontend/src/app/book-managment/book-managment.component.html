@@ -1,0 +1,49 @@
+<div class="card">
+  <h5>Tutorials</h5>
+  <p-table [value]="books" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Options</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-book>
+      <tr>
+        <td>{{book.title}}</td>
+        <td>{{book.description}}</td>
+        <td>
+
+          <button pButton pRipple type="button" icon="pi pi-exclamation-circle" class="p-button-rounded  mr-2"
+                  *ngIf="book.published"
+                  (click)="updatePublished(book,false)"
+          ></button>
+
+          <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded  mr-2"
+                  *ngIf="!currentBook.published"
+                  (click)="updatePublished(book,true)"
+          ></button>
+
+          <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger  mr-2"
+                  (click)="deleteBook(book)">
+
+          </button>
+
+
+
+          <button pButton pRipple type="button"
+                  icon="pi pi-pencil" class="p-button-rounded p-button-warning"
+                  (click)="updateBook()"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+      <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+      <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+    </ng-template>
+  </p-table>
+</div>
+<button pButton pRipple label="Delete All" icon="pi pi-trash" (click)="removeAllBooks()" class="p-button-danger mt-3"></button>

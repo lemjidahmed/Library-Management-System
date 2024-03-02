@@ -1,0 +1,13 @@
+<p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
+  <h1 style="font-weight:normal">Left Sidebar</h1>
+  <ng-container *ngIf="userRole === 'ROLE_ADMIN'">
+    <!-- Options for admin -->
+    <p-button type="button" label="Authors List"></p-button>
+    <p-button type="button" label="Book List" ></p-button>
+    <p-button type="button" label="Book Management" routerLink="/gestion-books"></p-button>
+  </ng-container>
+  <ng-container *ngIf="userRole === 'ROLE_USER'">
+    <!-- Options for user -->
+    <p-button type="button" label="Book List"></p-button>
+  </ng-container>
+</p-sidebar>
