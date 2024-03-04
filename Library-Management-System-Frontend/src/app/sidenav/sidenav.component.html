@@ -4,7 +4,9 @@
     <!-- Options for admin -->
     <p-button type="button" label="Authors List"></p-button>
     <p-button type="button" label="Book List" ></p-button>
-    <p-button type="button" label="Book Management" routerLink="/gestion-books"></p-button>
+    <p-button type="button" label="Book Management" routerLink="/home/gestion-books"></p-button>
+    <p-button type="button" label="Students List" routerLink="/home/student-list"></p-button>
+
   </ng-container>
   <ng-container *ngIf="userRole === 'ROLE_USER'">
     <!-- Options for user -->

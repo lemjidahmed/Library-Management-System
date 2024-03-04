@@ -1,7 +1,8 @@
 <div class="flex justify-content-center align-items-center h-full">
   <form *ngIf="!isLoggedIn"
         name="form"
-        (ngSubmit)="onSubmit()" [formGroup]="loginForm" >
+        (ngSubmit)="onSubmit()" [formGroup]="loginForm"
+        class="flex flex-col items-center" >
     <p-card header="Login" [style]="{ width: '360px' }">
       <div class="field">
         <label for="email">Email</label>
@@ -46,7 +47,11 @@
         [disabled]="loginForm.invalid"
         type="submit"
       ></p-button>
-      <div class="mt-2">Not a member? <a routerLink="/register">Register</a></div>
+      <div class="mt-2">Not a member? <a routerLink="/register">Register</a>
+        <span style="margin-right: 20px;"></span>
+        <a routerLink="/forgetpass">forget Password?</a></div>
+
     </p-card>
   </form>
 </div>
+

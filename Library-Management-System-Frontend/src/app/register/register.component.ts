@@ -3,6 +3,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {passwordMatchValidator} from "../shared/password-match.directive";
 import {Router} from "@angular/router";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,8 @@ export class RegisterComponent implements OnInit {
   errorMessage = '';
   constructor( private fb: FormBuilder,
                private authService: AuthService,
-               private router: Router) { }
+               private router: Router,
+               private messageService: MessageService) { }
 
   ngOnInit(): void {
   }
@@ -59,4 +61,8 @@ export class RegisterComponent implements OnInit {
       }
     });
   }
+  //
+  // showResponse(event) {
+  //   this.messageService.add({severity:'info', summary:'Succees', detail: 'User Responded', sticky: true});
+  // }
 }

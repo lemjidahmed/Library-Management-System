@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CardModule} from "primeng/card";
 import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from "primeng/button";
@@ -21,6 +21,15 @@ import {MenubarModule} from "primeng/menubar";
 import { BookManagmentComponent } from './book-managment/book-managment.component';
 import {TableModule} from "primeng/table";
 import {httpInterceptorProviders} from "./_helpers/http.interceptor";
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { StudentsListComponent } from './students-list/students-list.component';
+import { AddBookComponent } from './add-book/add-book.component';
+import {DialogService} from "primeng/dynamicdialog";
+import {CaptchaModule} from "primeng/captcha";
+import { BookListComponent } from './book-list/book-list.component';
+import {DataViewModule} from "primeng/dataview";
+import {DropdownModule} from "primeng/dropdown";
+import {RatingModule} from "primeng/rating";
 
 
 
@@ -32,7 +41,11 @@ import {httpInterceptorProviders} from "./_helpers/http.interceptor";
     RegisterComponent,
     NavbarComponent,
     SidenavComponent,
-    BookManagmentComponent
+    BookManagmentComponent,
+    ForgetPasswordComponent,
+    StudentsListComponent,
+    AddBookComponent,
+    BookListComponent
   ],
   imports: [
     BrowserModule,
@@ -46,10 +59,16 @@ import {httpInterceptorProviders} from "./_helpers/http.interceptor";
     SidebarModule,
     BrowserAnimationsModule,
     MenubarModule,
-    TableModule
+    TableModule,
+    CaptchaModule,
+    DataViewModule,
+    DropdownModule,
+    RatingModule,
+    FormsModule
   ],
   providers: [MessageService,
-    httpInterceptorProviders],
+    httpInterceptorProviders,
+    DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

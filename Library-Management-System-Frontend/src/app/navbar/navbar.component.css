@@ -3,3 +3,6 @@
   align-items: center;
   margin-right: 10px; /* Adjust as needed */
 }
+:host ::ng-deep .ui-menubar .ui-menubar-root-list {
+  float: right;
+}

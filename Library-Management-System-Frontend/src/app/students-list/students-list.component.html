@@ -1,0 +1,29 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="card">
+      <h5>Tutorials</h5>
+      <p-table [value]="students" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+               currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Name</th>
+            <th>Book Book List</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-student>
+          <tr>
+            <td>{{student.username}}</td>
+            <td>Show Books</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+          <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+          <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+

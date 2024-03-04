@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MessageService} from "primeng/api";
 import {BookService} from "../services/book.service";
+import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
+import {AddBookComponent} from "../add-book/add-book.component";
 
 @Component({
   selector: 'app-book-managment',
@@ -16,10 +18,10 @@ export class BookManagmentComponent implements OnInit {
 
   rows = 5;
   count=0;
-  constructor(private bookService:BookService,private messageService: MessageService) { }
+  constructor(private bookService:BookService,public dialogService: DialogService, public messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.retrieveBooks();
+    this.refreshList();
   }
   getRequestParams(searchTitle: string, page: number, pageSize: number): any {
     let params: any = {};
@@ -95,4 +97,26 @@ export class BookManagmentComponent implements OnInit {
   updateBook() {
 
   }
+
+  ref?: DynamicDialogRef;
+
+  show() {
+    this.ref = this.dialogService.open(AddBookComponent, {
+      header: 'Add Book',
+      width: '25%',
+      contentStyle: {"max-height": "500px", "overflow": "auto"},
+      baseZIndex: 10000
+    });
+    this.ref.onClose.subscribe(() =>{
+      this.retrieveBooks();
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.ref) {
+      this.ref.close();
+    }
+  }
+
 }
+

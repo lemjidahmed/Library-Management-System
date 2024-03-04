@@ -1,3 +1,4 @@
+<div class="flex justify-content-center align-items-center h-full">
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <p-card header="Register" [style]="{ width: '360px' }">
     <div class="field">
@@ -85,6 +86,11 @@
         Password should match
       </small>
     </div>
+<!--    <div class="card">-->
+<!--      <p-toast></p-toast>-->
+
+<!--      <p-captcha siteKey="6Lf2XQkTAAAAANcvOwYqPxWL4iZDksFqHpS39GDA" (onResponse)="showResponse($event)"></p-captcha>-->
+<!--    </div>-->
     <p-button
       label="Register"
       styleClass="w-full"
@@ -94,3 +100,4 @@
     <div class="mt-2">Already a member? <a routerLink="/login">Login</a></div>
   </p-card>
 </form>
+</div>

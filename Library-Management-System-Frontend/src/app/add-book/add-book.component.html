@@ -1,0 +1,39 @@
+<div>
+  <div *ngIf="!submitted">
+    <form [formGroup]="bookForm" (ngSubmit)="saveBook()" class="d-flex flex-column">
+      <div class="form-group field grid">
+        <label for="title" class="mr-3 col-fixed">Title:</label>
+        <div class="col">
+          <input type="text" id="title" pInputText formControlName="title" class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>
+        </div>
+      </div>
+      <div class="form-group field grid">
+        <label for="category" class="mr-3 col-fixed">Category:</label>
+        <div class="col">
+          <input type="text" id="category" pInputText formControlName="category" class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>
+        </div>
+      </div>
+      <div class="form-group field grid">
+        <label for="author" class="mr-3 col-fixed">Author:</label>
+        <div class="col">
+          <input type="text" id="author" pInputText formControlName="author" class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>
+        </div>
+      </div>
+      <div class="form-group field grid">
+        <label for="status" class="mr-3">Status:</label>
+        <div class="col">
+          <input type="text" id="status" pInputText formControlName="status" class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>
+        </div>
+      </div>
+      <div class="form-group field grid">
+        <label for="description" class="mr-3">Description:</label>
+        <input type="text" id="description" pInputText formControlName="description" class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>
+      </div>
+      <button type="submit" pButton pRipple class="btn btn-primary" label="Add Tutorial"></button>
+    </form>
+  </div>
+<!--  <div *ngIf="submitted">-->
+<!--    <h4>Tutorial was submitted successfully!</h4>-->
+<!--    <button pButton type="button" class="btn btn-success" label="Add" (click)="newBook()"></button>-->
+<!--  </div>-->
+<!--</div>-->

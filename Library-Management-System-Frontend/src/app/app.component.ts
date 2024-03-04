@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StorageService} from "./services/storage.service";
 
 @Component({
@@ -6,11 +6,16 @@ import {StorageService} from "./services/storage.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Library-Management-System-Frontend';
   isLoggedIn: boolean;
 
   constructor(private storageService: StorageService) {
       this.isLoggedIn=storageService.isLoggedIn();
+  }
+
+  ngOnInit(): void {
+    this.isLoggedIn=this.storageService.isLoggedIn();
+    console.log(this.isLoggedIn)
   }
 }
