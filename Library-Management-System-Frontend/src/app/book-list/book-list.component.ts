@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {PrimeNGConfig, SelectItem} from "primeng/api";
 import {BookService} from "../services/book.service";
 import {Table} from "primeng/table";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-book-list',
@@ -10,17 +11,19 @@ import {Table} from "primeng/table";
 })
 export class BookListComponent implements OnInit {
   protected readonly HTMLInputElement = HTMLInputElement;
-  books: any;
+  books: any=[];
   sortOptions: SelectItem[] = [];
   sortOrder: number = 1; // Initialize to default value
   sortField: string = ''; // Initialize to empty string
   sortKey: any;
   @ViewChild('dt') dt: Table | undefined;
-  constructor(private bookService: BookService,private primengConfig: PrimeNGConfig) { }
+  title?: string;
+
+
+  constructor(private bookService: BookService,private primengConfig: PrimeNGConfig,public domSanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.bookService.getAll().subscribe(data => this.books = data);
-
+      this.retrieveBooks();
     this.sortOptions = [
       {label: 'Price High to Low', value: '!price'},
       {label: 'Price Low to High', value: 'price'}
@@ -28,6 +31,24 @@ export class BookListComponent implements OnInit {
 
     this.primengConfig.ripple = true;
   }
+  retrieveBooks() {
+    this.bookService.getAll().subscribe({
+      next: (data) => {
+        console.log(data);
+        data.forEach((element: any) => {
+          // Convert image byte array to Base64 data URL
+          const imageUrl = 'data:image/jpeg;base64,' + element.image;
+          const safeImageUrl: SafeUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(
+            'data:image/png;base64,' + element.image);
+
+
+          // Push modified element to books array
+          this.books.push({ ...element, image: safeImageUrl });
+        });
+      }
+    });
+  }
+
 
   onSortChange(value:string) {
 
@@ -45,16 +66,18 @@ export class BookListComponent implements OnInit {
     this.dt!.filterGlobal(($event.target as HTMLInputElement).value, stringVal);
   }
 
-  getImageUrl(image: any): string {
-    if (image) {
-      const binaryData = [];
-      binaryData.push(image);
-      return 'data:image/jpeg;base64,' + window.btoa(binaryData.reduce((data, byte) => {
-        return data + String.fromCharCode(byte);
-      }, ''));
-    } else {
-      return '';
-    }
+  searchTitle() {
+    this.books.findByTitle(this.title)
+      .subscribe({
+        next: (data:any) => {
+          this.books = data;
+          console.log(data);
+        },
+        error: (e:any) => console.error(e)
+      });
   }
+
+
+
 
 }

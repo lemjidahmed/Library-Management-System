@@ -131,6 +131,7 @@ public class AuthController {
     userRepository.save(user);
     Student student=new Student(user.getUsername());
     student.setId(user.getId());
+    student.setStatus("Active");
     studentRepository.save(student);
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

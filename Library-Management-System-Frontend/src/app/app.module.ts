@@ -30,6 +30,9 @@ import { BookListComponent } from './book-list/book-list.component';
 import {DataViewModule} from "primeng/dataview";
 import {DropdownModule} from "primeng/dropdown";
 import {RatingModule} from "primeng/rating";
+import {FileUploadModule} from "primeng/fileupload";
+import {RippleModule} from "primeng/ripple";
+import { ProfileStudentComponent } from './profile-student/profile-student.component';
 
 
 
@@ -45,7 +48,8 @@ import {RatingModule} from "primeng/rating";
     ForgetPasswordComponent,
     StudentsListComponent,
     AddBookComponent,
-    BookListComponent
+    BookListComponent,
+    ProfileStudentComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,9 @@ import {RatingModule} from "primeng/rating";
     DataViewModule,
     DropdownModule,
     RatingModule,
-    FormsModule
+    FormsModule,
+    FileUploadModule,
+    RippleModule
   ],
   providers: [MessageService,
     httpInterceptorProviders,

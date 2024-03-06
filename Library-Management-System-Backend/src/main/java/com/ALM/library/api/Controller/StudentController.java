@@ -41,17 +41,17 @@ public class StudentController {
         }
     }
 
-//    @GetMapping("/students/{id}")
-//    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-//    public ResponseEntity<Student> getstudentById(@PathVariable("id") long id) {
-//        Optional<Student> student = studentService.getstudentById(id);
-//
-//        if (student.isPresent()) {
-//            return new ResponseEntity<>(student.get(), HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+    @GetMapping("/students/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public ResponseEntity<Student> getstudentById(@PathVariable("id") long id) {
+        Student student = studentService.getStudentById(id);
+        if(student!=null){
+            return new ResponseEntity<>(student, HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
     @PostMapping("/students")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Student> createstudent(@RequestBody Student studentRequest)
@@ -66,19 +66,21 @@ public class StudentController {
         }
     }
 
-//    @PutMapping("/students/{id}")
-//    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-//    public ResponseEntity<Student> updatestudent(@PathVariable("id") long id, @RequestBody Student student) {
-//        Student studentData = studentService.getStudentById(id);
-//
-//        if (studentData.isPresent()) {
-//            Student _student = studentData.get();
-//            _student.setUsername(student.getUsername());
-//            return new ResponseEntity<>(studentService.updatestudent(_student), HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+    @PutMapping("/students/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public ResponseEntity<Student> updateStudent(@PathVariable("id") long id, @RequestBody Student studentData) {
+        Student student = studentService.getStudentById(id);
+
+        if (student!=null) {
+            student.setUsername(studentData.getUsername());
+            student.setPhoneNumber(studentData.getPhoneNumber());
+            student.setStatus(studentData.getStatus());
+            studentService.updateStudent(student);
+            return new ResponseEntity<>(student, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     @DeleteMapping("/students/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")

@@ -21,11 +21,17 @@ import java.util.Set;
 @Builder
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "username")
     private String username;
+
+    @Column(name = "phone-number")
+    private int phoneNumber;
+
+    @Column(name = "status")
+    private String status;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "students_books",

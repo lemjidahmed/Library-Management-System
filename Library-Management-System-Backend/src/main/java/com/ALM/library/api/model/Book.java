@@ -38,8 +38,15 @@ public class Book {
   @Column(name = "number-copies")
   private int numberCopies;
 
+//  @Column(name = "image-url")
+//  private String imageUrl;
+
   @Lob
   @Column(name = "image")
   private byte[] image; // Image stored as byte array
+
+//  @Lob
+//  @Column(columnDefinition = "MEDIUMBLOB",name = "image")
+//  private String image;
 
 }

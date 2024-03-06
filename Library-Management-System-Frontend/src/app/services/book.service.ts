@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpEvent, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Book} from "../models/book.model";
 const baseUrl = 'http://localhost:8080/api/books';
+const baseUrl1 = 'http://localhost:8080/api';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,23 @@ export class BookService {
 
   getTutorialsLarge(page:number,size:number) {
     return this.http.get<any>(`${baseUrl}/page?page=${page}&size=${size}`)
+  }
+
+  upload(file: File): Observable<any> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+
+    const req= new HttpRequest('POST', `${baseUrl1}/upload`, formData, {
+      // reportProgress: true,
+      // responseType: 'json'
+    });
+
+    return this.http.request(req);
+  }
+
+  getFiles(): Observable<any> {
+    return this.http.get(`${baseUrl1}/files`);
   }
 }
 

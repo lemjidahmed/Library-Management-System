@@ -53,9 +53,8 @@ public class StudentService {
         this.studentRepository.deleteAll();
     }
 
-    public Student updatestudent(Student student) {
+    public void updateStudent(Student student) {
         studentRepository.save(student);
-        return student;
     }
 
     public List<Student> getStudentByUsername(String username) {

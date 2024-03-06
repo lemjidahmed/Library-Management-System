@@ -3,6 +3,9 @@ import {MenuItem} from "primeng/api";
 import {AuthService} from "../services/auth.service";
 import {StorageService} from "../services/storage.service";
 import {Router} from "@angular/router";
+import {AddBookComponent} from "../add-book/add-book.component";
+import {ProfileStudentComponent} from "../profile-student/profile-student.component";
+import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +16,7 @@ export class NavbarComponent implements OnInit {
   items!: MenuItem[];
   visibleSidebar1:any;
   role?:string;
-  constructor(private authService:AuthService,private storageService:StorageService,private router: Router) {
+  constructor(private authService:AuthService,private storageService:StorageService,private router: Router,private dialogService:DialogService) {
   }
   ngOnInit() {
   this.updateItems();
@@ -45,7 +48,8 @@ export class NavbarComponent implements OnInit {
             label: 'username',
             icon: 'pi pi-user',
             items: [
-              { label: 'Profile', icon: 'pi pi-user' },
+              { label: 'Profile', icon: 'pi pi-user',
+                command: () => this.show()},
               { label: 'Logout',
                 icon: 'pi pi-sign-out',
                 command: () => this.logout()
@@ -65,7 +69,9 @@ export class NavbarComponent implements OnInit {
           label: 'username',
           icon: 'pi pi-user',
           items: [
-            { label: 'Profile', icon: 'pi pi-user' },
+            { label: 'Profile', icon: 'pi pi-user',
+
+            },
             { label: 'Logout',
               icon: 'pi pi-sign-out',
               command: () => this.logout()
@@ -94,6 +100,21 @@ export class NavbarComponent implements OnInit {
         console.log(err);
       }
     });
+  }
+  ref?: DynamicDialogRef;
+  show() {
+    this.ref = this.dialogService.open(ProfileStudentComponent, {
+      header: 'Profile',
+      width: '70%',
+      contentStyle: {"max-height": "500px", "overflow": "auto"},
+      baseZIndex: 10000
+    });
+    this.ref.onClose.subscribe();
+  }
+  ngOnDestroy() {
+    if (this.ref) {
+      this.ref.close();
+    }
   }
 
 }

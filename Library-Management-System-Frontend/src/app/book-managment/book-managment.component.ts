@@ -3,6 +3,7 @@ import {MessageService} from "primeng/api";
 import {BookService} from "../services/book.service";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {AddBookComponent} from "../add-book/add-book.component";
+import {ProfileStudentComponent} from "../profile-student/profile-student.component";
 
 @Component({
   selector: 'app-book-managment',
@@ -103,7 +104,19 @@ export class BookManagmentComponent implements OnInit {
   show() {
     this.ref = this.dialogService.open(AddBookComponent, {
       header: 'Add Book',
-      width: '25%',
+      width: '75%',
+      contentStyle: {"max-height": "500px", "overflow": "auto"},
+      baseZIndex: 10000
+    });
+    this.ref.onClose.subscribe(() =>{
+      this.retrieveBooks();
+    });
+  }
+
+  show1() {
+    this.ref = this.dialogService.open(ProfileStudentComponent, {
+      header: 'Add Book',
+      width: '75%',
       contentStyle: {"max-height": "500px", "overflow": "auto"},
       baseZIndex: 10000
     });

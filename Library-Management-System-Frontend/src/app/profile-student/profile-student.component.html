@@ -1,0 +1,22 @@
+<form class="d-flex flex-column">
+  <div class="form-group field grid">
+    <label for="username" class="mr-3 col-fixed">Username:</label>
+    <div class="col">
+      <input type="text" id="username" name="username" [(ngModel)]="currentStudent.username" pInputText  class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>
+    </div>
+  </div>
+  <div class="form-group field grid">
+    <label for="phoneNumber" class="mr-3 col-fixed">phoneNumber:</label>
+    <div class="col">
+      <input type="text" id="phoneNumber" name="phoneNumber" pInputText [(ngModel)]="currentStudent.phoneNumber" class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>
+    </div>
+  </div>
+  <div class="form-group field grid">
+    <label for="status" class="mr-3">Status:</label>
+    <div class="col">
+      <input type="text" id="status" name="status" pInputText [(ngModel)]="currentStudent.status" class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>
+    </div>
+  </div>
+  <p-toast></p-toast>
+</form>
+<button type="submit" pButton pRipple class="btn btn-primary" label="Update" (click)="updateStudent()"></button>
