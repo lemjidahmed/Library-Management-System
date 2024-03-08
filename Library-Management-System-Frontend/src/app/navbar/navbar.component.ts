@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {AddBookComponent} from "../add-book/add-book.component";
 import {ProfileStudentComponent} from "../profile-student/profile-student.component";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
+import {AddAuthorComponent} from "../add-author/add-author.component";
 
 @Component({
   selector: 'app-navbar',
@@ -29,9 +30,44 @@ export class NavbarComponent implements OnInit {
     {
       this.items.push(
           {
-            label:'Manage Books',
+            label:'Library',
             icon:'pi pi-fw pi-file',
-            routerLink: '/home/gestion-books'
+            items: [
+              {label:'Manage Books',
+                icon:'pi pi-fw pi-file',
+                items:[
+                  {
+                    label:'Books',
+                    icon:'pi pi-fw pi-file',
+                    routerLink: '/home/manage-books',
+                  },
+                  {
+                    label:'Add Book',
+                    icon:'pi pi-fw pi-file',
+                    command: () => this.showAddBook()
+
+                  }
+                ],
+                routerLink: '/home/manage-books',
+              },
+              {label:'Manage Authors',
+                icon:'pi pi-fw pi-file',
+                items:[
+                  {
+                    label:'Authors',
+                    icon:'pi pi-fw pi-file',
+                    routerLink: '/home/manage-authors',
+                  },
+                  {
+                    label:'Add Author',
+                    icon:'pi pi-fw pi-file',
+                    command: () => this.showAddAuthor()
+
+                  }
+                ],
+                routerLink: '/home/gestion-books',
+              },
+            ],
           },
 
           {
@@ -39,13 +75,18 @@ export class NavbarComponent implements OnInit {
             icon:'pi pi-fw pi-file',
             routerLink: '/home/student-list'
           },
+        {
+          label:'Borrow book',
+          icon:'pi pi-fw pi-file',
+          routerLink: '/home/borrow-book'
+        },
           {
             label:'Consult books',
             icon:'pi pi-fw pi-file',
             routerLink: '/home/book-list'
           },
           {
-            label: 'username',
+            label: this.storageService.getUser().username,
             icon: 'pi pi-user',
             items: [
               { label: 'Profile', icon: 'pi pi-user',
@@ -66,7 +107,17 @@ export class NavbarComponent implements OnInit {
           routerLink: '/home/book-list'
         },
         {
-          label: 'username',
+          label:'Borrow book',
+          icon:'pi pi-fw pi-file',
+          routerLink: '/home/borrow-book'
+        },
+        {
+          label:'My List',
+          icon:'pi pi-fw pi-file',
+          routerLink: '/home/return-book'
+        },
+        {
+          label: this.storageService.getUser().username,
           icon: 'pi pi-user',
           items: [
             { label: 'Profile', icon: 'pi pi-user',
@@ -111,10 +162,29 @@ export class NavbarComponent implements OnInit {
     });
     this.ref.onClose.subscribe();
   }
+
+  showAddBook() {
+    this.ref = this.dialogService.open(AddBookComponent, {
+      header: 'ADD BOOK',
+      width: '70%',
+      contentStyle: {"max-height": "500px", "overflow": "auto"},
+      baseZIndex: 10000
+    });
+    this.ref.onClose.subscribe();
+  }
+
+  private showAddAuthor() {
+    this.ref = this.dialogService.open(AddAuthorComponent, {
+      header: 'ADD Author',
+      width: '50%',
+      contentStyle: {"max-height": "500px", "overflow": "auto"},
+      baseZIndex: 10000
+    });
+    this.ref.onClose.subscribe();
+  }
   ngOnDestroy() {
     if (this.ref) {
       this.ref.close();
     }
   }
-
 }

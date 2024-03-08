@@ -8,4 +8,6 @@ public interface BookRepository extends JpaRepository<Book,Long> {
   List<Book> findByTitleContaining(String title);
   Book findBookByTitle(String title);
   Book findBookById(Long id);
+  List<Book> findBooksByAuthorId(long id);
+
 }

@@ -8,6 +8,11 @@ import {BookManagmentComponent} from "./book-managment/book-managment.component"
 import {ForgetPasswordComponent} from "./forget-password/forget-password.component";
 import {StudentsListComponent} from "./students-list/students-list.component";
 import {BookListComponent} from "./book-list/book-list.component";
+import {AuthorListComponent} from "./author-list/author-list.component";
+import {BorrowBookComponent} from "./borrow-book/borrow-book.component";
+import {BookDetailsComponent} from "./book-details/book-details.component";
+import {UserDetailsComponent} from "./user-details/user-details.component";
+import {ReturnBookComponent} from "./return-book/return-book.component";
 
 const routes: Routes = [
   {path: 'login',component: LoginComponent},
@@ -15,15 +20,19 @@ const routes: Routes = [
   {path: 'forgetpass',component: ForgetPasswordComponent},
 
   // {
-  //   path: 'gestion-books',
+  //   path: 'manage-books',
   //   component: BookManagmentComponent,
   // },
   {path: 'home',component: DashboardComponent,
     children: [
-      {path: 'gestion-books', component: BookManagmentComponent},
+      {path: 'manage-books', component: BookManagmentComponent},
       {path: 'student-list', component: StudentsListComponent},
-      {path: 'book-list', component: BookListComponent}
-
+      {path: 'book-list', component: BookListComponent},
+      {path: 'manage-authors', component: AuthorListComponent},
+      {path: 'borrow-book', component: BorrowBookComponent},
+      {path: 'book-details', component: BookDetailsComponent},
+      {path: 'user-details', component: UserDetailsComponent},
+      {path: 'return-book', component: ReturnBookComponent},
     ],
     canActivate: [AuthGuard]
   },

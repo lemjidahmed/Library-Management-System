@@ -28,7 +28,7 @@
 <!--      </div>-->
 <!--    </div>-->
     <form [formGroup]="bookForm" (ngSubmit)="saveBook()" class="d-flex flex-column">
-      <div class="row">
+      <div class="row m-3">
         <div class="col-8">
           <label class="btn btn-default p-0">
             <input type="file" (change)="OnFileSelected($event)" />
@@ -38,37 +38,59 @@
           <img [src]="imagePreview" alt="selected image" width="150" height="150">
         </div>
       </div>
-      <div class="form-group field grid">
-        <label for="title" class="mr-3 col-fixed">Title:</label>
+      <div class="field grid">
+        <label for="title" class="col-fixed" style="width:100px">Title:</label>
         <div class="col">
-          <input type="text" id="title" pInputText formControlName="title" class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>
+          <input id="title" type="text" pInputText formControlName="title" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>
+        </div>
+        <label for="author" class="col-fixed" style="width:100px">Author:</label>
+        <div class="col">
+          <input id="author" type="text" pInputText formControlName="author" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>
         </div>
       </div>
-      <div class="form-group field grid">
-        <label for="category" class="mr-3 col-fixed">Category:</label>
-        <div class="col">
-          <input type="text" id="category" pInputText formControlName="category" class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>
+<!--      <div class="form-group field grid">-->
+<!--        <label for="category" class="mr-3 col-fixed" style="width:100px">Category:</label>-->
+<!--          <input type="text" id="category" pInputText formControlName="category"  required>-->
+<!--      </div>-->
+      <div class="field grid">
+        <label for="category" class="col-fixed" style="width:100px">Category: </label>
+        <select id="category" formControlName="category" class="col-fixed text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary" style="width:15rem">
+          <option>Romance</option>
+          <option>Sience Fiction</option>
+          <option>Novel</option>
+          <option>Horror</option>
+          <option>Thriller</option>
+        </select>
+      </div>
+      <p>Status:</p>
+      <div class="formgroup-inline">
+        <div class="field-radiobutton">
+          <input type="radio" formControlName="status" id="available" value="available">
+          <label for="available">Available</label>
+        </div>
+        <div class="field-checkbox">
+          <input type="radio" formControlName="status" id="notAvailable" value="notAvailable">
+          <label for="notAvailable">Not Available</label>
         </div>
       </div>
-      <div class="form-group field grid">
-        <label for="author" class="mr-3 col-fixed">Author:</label>
-        <div class="col">
-          <input type="text" id="author" pInputText formControlName="author" class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>
-        </div>
-      </div>
-      <div class="form-group field grid">
-        <label for="status" class="mr-3">Status:</label>
-        <div class="col">
-          <input type="text" id="status" pInputText formControlName="status" class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>
-        </div>
-      </div>
-      <div class="form-group field grid">
-        <label for="description" class="mr-3">Description:</label>
-        <input type="text" id="description" pInputText formControlName="description" class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>
-      </div>
-      <div class="form-group field grid">
-        <label for="numberCopies" class="mr-3">number of copies:</label>
-        <input type="number" id="numberCopies" pInputText formControlName="numberCopies" class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>
+<!--      <div class="form-group field grid">-->
+<!--        <label for="status" class="mr-3">Status:</label>-->
+<!--          <input type="text" id="status" pInputText formControlName="status" class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>-->
+<!--      </div>-->
+<!--      <div class="form-group field grid">-->
+<!--        <label for="description" class="mr-3">Description:</label>-->
+<!--        <input type="text" id="description" pInputText formControlName="description" class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>-->
+<!--      </div>-->
+      <h5>Description:</h5>
+      <textarea rows="5" cols="30" pInputTextarea formControlName="description"></textarea>
+<!--      <div class="form-group field grid">-->
+<!--        <label for="numberCopies" class="mr-3">number of copies:</label>-->
+<!--        <input type="number" id="numberCopies" pInputText formControlName="numberCopies" class="form-control text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" required>-->
+<!--      </div>-->
+      <div class="p-field p-col-12 p-md-3">
+        <label for="numberCopies">Number Copies:</label>
+        <p-inputNumber formControlName="numberCopies" mode="decimal" [showButtons]="true" inputId="minmax-buttons" [min]="0" [max]="1000">
+        </p-inputNumber>
       </div>
       <p-toast></p-toast>
       <button type="submit" pButton pRipple class="btn btn-primary" label="Add Book"></button>

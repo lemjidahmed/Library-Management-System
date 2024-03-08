@@ -1,0 +1,49 @@
+<h2 class="m-3">List of My Books </h2>
+<!--<table class="table table-success table-striped">-->
+<!--  <thead>-->
+<!--  <tr>-->
+<!--    <th> Book ID </th>-->
+<!--    <th> Issue Date </th>-->
+<!--    <th> Return Date </th>-->
+<!--    <th> Overdue Date </th>-->
+<!--    <th> Action </th>-->
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<!--  <tr *ngFor="let b of borrow">-->
+<!--    <td> {{ b.bookId }} </td>-->
+<!--    <td> {{ b.issueDate }} </td>-->
+<!--    <td> {{ b.returnDate }} </td>-->
+<!--    <td> {{ b.dueDate }} </td>-->
+<!--    <td>-->
+<!--      <div *ngIf="b.returnDate === null">-->
+<!--        <button *ngIf="b.borrowId!=null" (click) = "returnBook(b.borrowId)" class="btn btn-success"> Return </button>-->
+<!--      </div>-->
+<!--    </td>-->
+<!--  </tr>-->
+<!--  </tbody>-->
+<!--</table>-->
+<p-table [value]="borrow" responsiveLayout="scroll">
+  <ng-template pTemplate="header">
+    <tr>
+      <th> Book ID </th>
+      <th> Issue Date </th>
+      <th> Return Date </th>
+      <th> Overdue Date </th>
+      <th> Action </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-b>
+    <tr>
+      <td> {{ b.bookId }} </td>
+      <td> {{ b.issueDate }} </td>
+      <td> {{ b.returnDate }} </td>
+      <td> {{ b.dueDate }} </td>
+      <td>
+        <div *ngIf="b.returnDate === null">
+          <button *ngIf="b.borrowId!=null" (click) = "returnBook(b.borrowId)" class="btn btn-success"> Return </button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

@@ -3,7 +3,7 @@ import {HttpClient, HttpEvent, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Book} from "../models/book.model";
 const baseUrl = 'http://localhost:8080/api/books';
-const baseUrl1 = 'http://localhost:8080/api';
+const baseUrl1 = 'http://localhost:8080/api/authors';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class BookService {
     return this.http.get<any>(baseUrl, { params });
   }
 
-  get(id:any): Observable<Book>{
+  getBookById(id:any): Observable<Book>{
     return this.http.get<Book>(`${baseUrl}/${id}`);
 
   }
@@ -62,6 +62,10 @@ export class BookService {
 
   getFiles(): Observable<any> {
     return this.http.get(`${baseUrl1}/files`);
+  }
+
+  getBooksByAuthor(authorId: any):Observable<any> {
+    return this.http.get<Book>(`${baseUrl}/book-author/${authorId}`);
   }
 }
 

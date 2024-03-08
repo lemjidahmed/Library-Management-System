@@ -33,6 +33,16 @@ import {RatingModule} from "primeng/rating";
 import {FileUploadModule} from "primeng/fileupload";
 import {RippleModule} from "primeng/ripple";
 import { ProfileStudentComponent } from './profile-student/profile-student.component';
+import { BorrowBookComponent } from './borrow-book/borrow-book.component';
+import { BookDetailsComponent } from './book-details/book-details.component';
+import { AddAuthorComponent } from './add-author/add-author.component';
+import { AuthorListComponent } from './author-list/author-list.component';
+import { BookByAuthorComponent } from './book-by-author/book-by-author.component';
+import {ListboxModule} from "primeng/listbox";
+import { ReturnBookComponent } from './return-book/return-book.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import {CascadeSelectModule} from "primeng/cascadeselect";
+import {InputNumberModule} from "primeng/inputnumber";
 
 
 
@@ -49,7 +59,14 @@ import { ProfileStudentComponent } from './profile-student/profile-student.compo
     StudentsListComponent,
     AddBookComponent,
     BookListComponent,
-    ProfileStudentComponent
+    ProfileStudentComponent,
+    BorrowBookComponent,
+    BookDetailsComponent,
+    AddAuthorComponent,
+    AuthorListComponent,
+    BookByAuthorComponent,
+    ReturnBookComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +87,10 @@ import { ProfileStudentComponent } from './profile-student/profile-student.compo
     RatingModule,
     FormsModule,
     FileUploadModule,
-    RippleModule
+    RippleModule,
+    ListboxModule,
+    CascadeSelectModule,
+    InputNumberModule
   ],
   providers: [MessageService,
     httpInterceptorProviders,

@@ -11,6 +11,8 @@ import {Observable} from "rxjs";
   styleUrls: ['./add-book.component.css']
 })
 export class AddBookComponent implements OnInit {
+  categories: any[]=[];
+  selectedCategory: any;
   submitted: boolean=false;
   bookForm: FormGroup;
   selectedFile?: File | null;
@@ -33,8 +35,22 @@ export class AddBookComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    // this.fileInfos = this.bookService.getFiles();
+    this.categories = [
+      {
+        name: 'novel'
+      },
+      {
+        name: 'Romance'
+      },
+      {
+        name: 'Science fiction'
+      },
+      {
+        name: 'Horror'
+      }
+    ];
   }
+
 
   saveBook() {
     if (this.bookForm.valid && this.selectedFile) {

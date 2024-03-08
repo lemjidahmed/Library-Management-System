@@ -30,6 +30,9 @@ public class BookService {
     return bookRepository.findByTitleContaining(title);
   }
 
+  public List<Book> getBookByAuthorId(long id) {
+    return bookRepository.findBooksByAuthorId(id);
+  }
 
 //  public Book addBook(BookRequest bookRequest) {
 //    Author author = authorRepository.findByName(bookRequest.getAuthorName());

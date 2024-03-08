@@ -103,6 +103,18 @@ public class BookController {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
+
+  @GetMapping("/books/book-author/{id}")
+  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+  public ResponseEntity<List<Book>> getBooksByAuthorId(@PathVariable("id") long id) {
+    List<Book> books = bookService.getBookByAuthorId(id);
+
+    if (books !=null) {
+      return new ResponseEntity<>(books, HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+  }
 //  @PostMapping("/books")
 //  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
 //  public ResponseEntity<Book> createBook(@RequestBody BookRequest bookRequest)

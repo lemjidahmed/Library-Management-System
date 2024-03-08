@@ -5,4 +5,5 @@ export class Book{
   status?:string;
   category?:string;
   description?:string;
+  numberCopies?:number;
 }

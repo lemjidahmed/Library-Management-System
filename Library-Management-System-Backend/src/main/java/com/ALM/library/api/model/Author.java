@@ -21,12 +21,6 @@ public class Author {
   @Column(name = "name")
   private String name;
 
-  @Column(name = "firstname")
-  private  String firstname;
-
-  @Column(name = "picture")
-  private String picture;
-
   @OneToMany(mappedBy = "author", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
   private List<Book> books = new ArrayList<>();
 

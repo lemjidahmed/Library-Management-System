@@ -48,5 +48,11 @@ public class Book {
 //  @Lob
 //  @Column(columnDefinition = "MEDIUMBLOB",name = "image")
 //  private String image;
+  public void borrowBook() {
+    this.numberCopies--;
+  }
 
+    public void returnBook() {
+      this.numberCopies++;
+    }
 }

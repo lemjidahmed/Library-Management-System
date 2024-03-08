@@ -13,7 +13,10 @@
         <ng-template pTemplate="body" let-student>
           <tr>
             <td>{{student.username}}</td>
-            <td>Show Books</td>
+            <td>          <button pButton pRipple type="button"
+                                  icon="pi pi-question-circle" class="p-button-rounded p-button-info"
+                                  (click)="showHistory(student)"></button>
+            </td>
           </tr>
         </ng-template>
         <ng-template pTemplate="paginatorleft">

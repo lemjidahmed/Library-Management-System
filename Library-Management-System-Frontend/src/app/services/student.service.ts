@@ -10,7 +10,7 @@ export class StudentService {
 
   constructor(private http:HttpClient) { }
 
-  get(id:any):Observable<any> {
+  getStudentById(id:any):Observable<any> {
     return this.http.get<any>(`${baseUrl}/${id}`);
   }
   getAll(): Observable<any> {

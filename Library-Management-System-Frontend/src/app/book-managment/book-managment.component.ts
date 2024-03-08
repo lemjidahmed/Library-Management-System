@@ -4,6 +4,9 @@ import {BookService} from "../services/book.service";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {AddBookComponent} from "../add-book/add-book.component";
 import {ProfileStudentComponent} from "../profile-student/profile-student.component";
+import {BookDetailsComponent} from "../book-details/book-details.component";
+import {BookByAuthorComponent} from "../book-by-author/book-by-author.component";
+import {Book} from "../models/book.model";
 
 @Component({
   selector: 'app-book-managment',
@@ -11,6 +14,7 @@ import {ProfileStudentComponent} from "../profile-student/profile-student.compon
   styleUrls: ['./book-managment.component.css']
 })
 export class BookManagmentComponent implements OnInit {
+  ref?: DynamicDialogRef;
   books:any;
   currentBook: any = {};
   currentIndex=-1;
@@ -78,8 +82,8 @@ export class BookManagmentComponent implements OnInit {
         error: (e:any) => console.error(e)
       });
   }
-  deleteBook(tuto:any): void {
-    this.bookService.delete(tuto.id)
+  deleteBook(book:any): void {
+    this.bookService.delete(book.id)
       .subscribe({
         next: (res:any) => {
           console.log(res);
@@ -98,9 +102,6 @@ export class BookManagmentComponent implements OnInit {
   updateBook() {
 
   }
-
-  ref?: DynamicDialogRef;
-
   show() {
     this.ref = this.dialogService.open(AddBookComponent, {
       header: 'Add Book',
@@ -113,16 +114,16 @@ export class BookManagmentComponent implements OnInit {
     });
   }
 
-  show1() {
-    this.ref = this.dialogService.open(ProfileStudentComponent, {
-      header: 'Add Book',
-      width: '75%',
-      contentStyle: {"max-height": "500px", "overflow": "auto"},
-      baseZIndex: 10000
-    });
-    this.ref.onClose.subscribe(() =>{
-      this.retrieveBooks();
-    });
+  showHistory(book:Book) {
+    this.ref = this.dialogService.open(BookDetailsComponent, {
+      header: 'Details of' + book.title,
+      width: '50%',
+      contentStyle: { "max-height": "500px", "overflow": "auto" },
+      baseZIndex: 10000,
+      data: {
+        bookId: book.id // Pass any additional data needed to fetch books by author
+      }});
+    this.ref.onClose.subscribe();
   }
 
   ngOnDestroy() {
@@ -131,5 +132,17 @@ export class BookManagmentComponent implements OnInit {
     }
   }
 
+
+  showAddBook() {
+    this.ref = this.dialogService.open(AddBookComponent, {
+      header: 'ADD BOOK',
+      width: '70%',
+      contentStyle: {"max-height": "80000px", "overflow": "auto"},
+      baseZIndex: 10000
+    });
+    this.ref.onClose.subscribe(next=>{
+    this.retrieveBooks();
+    });
+  }
 }
 

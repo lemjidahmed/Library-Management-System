@@ -1,7 +1,7 @@
-<div class="card m-5" >
-  <h2>BOOKS LIST</h2>
+<div class="card m-5 p-3" >
+  <h2 class="m-4 text-center" [ngStyle]="{backgroundColor:'var(--indigo-100)'}">BOOKS LIST</h2>
   <p-table [value]="books" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
-           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]">
     <ng-template pTemplate="header">
       <tr>
         <th>Title</th>
@@ -24,6 +24,9 @@
 <!--                  *ngIf="!currentBook.published"-->
 <!--                  (click)="updatePublished(book,true)"-->
 <!--          ></button>-->
+          <button pButton pRipple type="button"
+                  icon="pi pi-question-circle" class="p-button-rounded p-button-info mr-2"
+                  (click)="showHistory(book)"></button>
 
           <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger  mr-2"
                   (click)="deleteBook(book)">
@@ -40,7 +43,7 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="paginatorleft">
-      <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+      <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" (click)="showAddBook()"></p-button>
     </ng-template>
     <ng-template pTemplate="paginatorright">
       <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
@@ -49,8 +52,4 @@
 </div>
 <button pButton pRipple label="Delete All" icon="pi pi-trash" (click)="removeAllBooks()" class="p-button-danger  m-3"></button>
 <p-toast [style]="{marginTop: '80px'}"></p-toast>
-
-<button type="button" (click)="show()" pButton icon="pi pi-book" label="ADD BOOK" class="m-3"></button>
-
-<button type="button" (click)="show1()" pButton icon="pi pi-book" label="ADD BOOK" class="m-3"></button>
 

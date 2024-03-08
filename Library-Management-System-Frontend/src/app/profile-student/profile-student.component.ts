@@ -21,13 +21,13 @@ export class ProfileStudentComponent implements OnInit {
     this.getStudent(this.storageService.getUser().id)
   }
   getStudent(id: string): void {
-    this.studentService.get(id)
+    this.studentService.getStudentById(id)
       .subscribe({
-        next: (data) => {
+        next: (data:any) => {
           this.currentStudent = data;
           console.log(data);
         },
-        error: (e) => console.error(e)
+        error: (e:any) => console.error(e)
       });
   }
 

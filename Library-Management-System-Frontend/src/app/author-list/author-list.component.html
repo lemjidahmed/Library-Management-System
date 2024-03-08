@@ -1,0 +1,43 @@
+<div class="card m-5 p-3" >
+  <h2 class="m-4 text-center">AUTHORS LIST</h2>
+  <p-table [value]="authors" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Options</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-author>
+      <tr>
+        <td>{{author.name}}</td>
+        <td>{{author.description}}</td>
+        <td>
+          <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger  mr-2"
+                  (click)="deleteAuthor(author)">
+
+          </button>
+
+
+
+          <button pButton pRipple type="button"
+                  icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2"
+                  (click)="updateAuthor()" ></button>
+
+          <button pButton pRipple type="button"
+                  icon="pi pi-book" class="p-button-rounded p-button-info mr-2"
+                  (click)="showBooks(author)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+      <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+      <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+    </ng-template>
+  </p-table>
+</div>
+<button pButton pRipple label="Delete All" icon="pi pi-trash" (click)="removeAllAuthors()" class="p-button-danger  m-3"></button>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
